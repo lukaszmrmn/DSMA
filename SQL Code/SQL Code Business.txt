@@ -1,0 +1,59 @@
+SELECT 
+  j->>'business_id' AS business_id,
+  j->>'categories' AS categories,
+  j->>'city' AS city,
+  j->>'state' AS state,
+  j->>'postal_code' AS postal_code,
+  j->>'latitude' AS latitude,
+  j->>'longitude' AS longitude,
+  j->>'stars' AS stars,
+  j->>'review_count' AS review_count,
+  j->>'is_open' AS is_open,
+  -- Dynamische Extraktion aller Attribute aus der "attributes"-JSON-Spalte
+  (j->'attributes'->>'BYOB') AS byob,
+  (j->'attributes'->>'WiFi') AS wifi,
+  (j->'attributes'->>'HasTV') AS has_tv,
+  (j->'attributes'->>'Music') AS music,
+  (j->'attributes'->>'Caters') AS caters,
+  (j->'attributes'->>'Alcohol') AS alcohol,
+  (j->'attributes'->>'Smoking') AS smoking,
+  (j->'attributes'->>'Ambience') AS ambience,
+  (j->'attributes'->>'CoatCheck') AS coat_check,
+  (j->'attributes'->>'DriveThru') AS drive_thru,
+  (j->'attributes'->>'HappyHour') AS happy_hour,
+  (j->'attributes'->>'BestNights') AS best_nights,
+  (j->'attributes'->>'NoiseLevel') AS noise_level,
+  (j->'attributes'->>'BikeParking') AS bike_parking,
+  (j->'attributes'->>'DogsAllowed') AS dogs_allowed,
+  (j->'attributes'->>'GoodForKids') AS good_for_kids,
+  (j->'attributes'->>'GoodForMeal') AS good_for_meal,
+  (j->'attributes'->>'GoodForDancing') AS good_for_dancing,
+  (j->'attributes'->>'OutdoorSeating') AS outdoor_seating,
+  (j->'attributes'->>'BusinessParking') AS business_parking,
+  (j->'attributes'->>'ByAppointmentOnly') AS by_appointment_only,
+  (j->'attributes'->>'RestaurantsAttire') AS restaurants_attire,
+  (j->'attributes'->>'RestaurantsTakeOut') AS restaurants_take_out,
+  (j->'attributes'->>'RestaurantsDelivery') AS restaurants_delivery,
+  (j->'attributes'->>'WheelchairAccessible') AS wheelchair_accessible,
+  (j->'attributes'->>'BusinessAcceptsBitcoin') AS business_accepts_bitcoin,
+  (j->'attributes'->>'RestaurantsPriceRange2') AS restaurants_price_range,
+  (j->'attributes'->>'RestaurantsReservations') AS restaurants_reservations,
+  (j->'attributes'->>'RestaurantsTableService') AS restaurants_table_service,
+  (j->'attributes'->>'RestaurantsGoodForGroups') AS restaurants_good_for_groups,
+  (j->'attributes'->>'BusinessAcceptsCreditCards') AS business_accepts_credit_cards,
+  -- Öffnungszeiten extrahieren
+  (j->'hours'->>'Monday') AS hours_monday,
+  (j->'hours'->>'Tuesday') AS hours_tuesday,
+  (j->'hours'->>'Wednesday') AS hours_wednesday,
+  (j->'hours'->>'Thursday') AS hours_thursday,
+  (j->'hours'->>'Friday') AS hours_friday,
+  (j->'hours'->>'Saturday') AS hours_saturday,
+  (j->'hours'->>'Sunday') AS hours_sunday
+FROM public.business
+WHERE j->>'categories' LIKE '%Restaurants%'
+
+
+
+
+
+

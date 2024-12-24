@@ -1,0 +1,11 @@
+SELECT 
+  r.j->>'stars' AS star_rating,  -- Sterne als FLOAT konvertieren
+  COUNT(*) AS count
+FROM public.review r
+JOIN public.business b
+  ON r.j->>'business_id' = b.j->>'business_id'
+WHERE b.j->>'categories' LIKE '%Sushi%' 
+  AND (b.j->>'city' = 'Philadelphia' OR b.j->>'city' = 'Nashville')
+  AND LENGTH(r.j->>'text') <= 500
+GROUP BY r.j->>'stars'
+ORDER BY r.j->>'stars';

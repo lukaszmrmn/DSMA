@@ -1,0 +1,10 @@
+SELECT 
+  r.j->>'business_id' AS business_id,
+  r.j->>'stars' AS stars,
+  r.j->>'date' AS date,
+  r.j->>'text' AS text
+FROM public.review r
+JOIN public.business b
+  ON r.j->>'business_id' = b.j->>'business_id'
+WHERE b.j->>'categories' LIKE '%Sushi%' 
+  AND LENGTH(r.j->>'text') <= 500;
