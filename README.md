@@ -1,1 +1,2 @@
 These are all the codes used to create the thesis. Although the Python codes are numbered, they were not executed perfectly in this order but rather intermixed and executed in a non-sequential manner. As a result, the code is not perfectly executable in a clear order, and some attention is needed to ensure everything runs correctly. However, all the results from the thesis should be fully replicable as provided.
+Data.zip contains the data used for analysis (Data.csv) and the data obtained after using the ChatGPT API for text analysis (Processed_Review_Data_(1-3).csv).
